@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-
-import 'mainPages/Portfolio.dart';
+import 'package:learn_flutter/QuestationApp/QuizApp.dart';
 
 
 
 void main() {
-  runApp(Portfolio());
+  runApp(QuizApp());
+  
 }
 
 //https://medium.com/flutter-community/flutter-for-web-building-a-portfolio-website-3e9865710efe
