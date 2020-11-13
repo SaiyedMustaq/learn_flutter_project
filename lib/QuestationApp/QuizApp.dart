@@ -76,18 +76,10 @@ class _State extends State<QuizAppPage> {
 
   
   void _andwerQuestation(int score) {
-    bool aBool = true;
-
       _totalScore = _totalScore + score;
     setState(() {
       _questationIndex = _questationIndex + 1;
     });
-
-    if (_questationIndex < _questations.length) {
-      print("We have more questation $_totalScore");
-    } else {
-      print("No more questation");
-    }
   }
 
   void _onLognPress() {

@@ -155,7 +155,8 @@ class __LoginPageThreeState extends State<LoginpageThree> {
                                   Row(
                                     children: <Widget>[
                                       Radio(
-                                        value: 0,
+                                        
+                                        value: 0, groupValue: null, onChanged: (int value) {  },
                                       ),
                                       Text(
                                         'I agree to Privecy Polices and Condition of Use',

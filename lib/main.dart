@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:learn_flutter/QuestationApp/Assignment1.dart';
+import 'package:learn_flutter/QuestationApp/QuizApp.dart';
 
 
 
 
 void main() {
-  runApp(AssignMent1());
+  runApp(QuizApp());
   
 }
 
