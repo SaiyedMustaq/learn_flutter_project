@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:learn_flutter/color/ColorPlate.dart';
-import 'package:learn_flutter/screenSize/BaseWidget.dart';
+import 'package:learn_flutter/widgets/BaseWidget.dart';
 import 'package:learn_flutter/widgets/info_cart.dart';
 
 

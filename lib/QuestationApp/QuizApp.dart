@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:learn_flutter/QuestationApp/answer.dart';
-import 'package:learn_flutter/QuestationApp/questation.dart';
+import 'package:learn_flutter/QuestationApp/quiz.dart';
+import 'package:learn_flutter/QuestationApp/result.dart';
 
 class QuizApp extends StatelessWidget {
   @override
@@ -23,34 +23,70 @@ class QuizAppPage extends StatefulWidget {
 
 class _State extends State<QuizAppPage> {
   var _questationIndex = 0;
+  var _totalScore = 0;
 
-  final questations = const [
+
+  void _resetQuiz(){
+    setState(() {
+    _totalScore=0;
+    _questationIndex=0;  
+    });
+    
+
+  }
+
+  final _questations = const [
     {
       'questationText': 'What is your favourite color?',
-      'answer': ['Black', 'White', 'Red', 'Yellow']
+      'answer': [
+        {'text': 'Black', 'score': 10},
+        {'text': 'White', 'score': 5},
+        {'text': 'Red', 'score': 3},
+        {'text': 'Yellow', 'score': 1}
+      ]
     },
     {
       'questationText': 'What is your favourite animal?',
-      'answer': ['Got', 'Hen', 'Horce', 'Camel']
+      'answer': [
+        {'text': 'Got', 'score': 10},
+        {'text': 'Hen', 'score': 20},
+        {'text': 'Horce', 'score': 15},
+        {'text': 'Camel', 'score': 8}
+      ]
     },
     {
       'questationText': 'What is your favourite place?',
-      'answer': ['Ahmedabad', 'Laddhak', 'Manali', 'Aabu']
+      'answer': [
+        {'text': 'Ahmedabad', 'score': 12},
+        {'text': 'Laddhak', 'score': 15},
+        {'text': 'Manali', 'score': 4},
+        {'text': 'Aabu', 'score': 2}
+      ]
     },
     {
       'questationText': 'What is your favourite games?',
-      'answer': ['Pool Table', 'Cricket', 'Foorball', 'Vollyball']
+      'answer': [
+        {'text': 'Pool Table', 'score': 1},
+        {'text': 'Cricket', 'score': 6},
+        {'text': 'Foorball', 'score': 5},
+        {'text': 'Vollyball', 'score': 7}
+      ]
     },
   ];
 
-  void _andwerQuestation() {
+  
+  void _andwerQuestation(int score) {
     bool aBool = true;
-    if (_questationIndex < questations.length) {
-      setState(() {
-        _questationIndex = _questationIndex + 1;
-      });
+
+      _totalScore = _totalScore + score;
+    setState(() {
+      _questationIndex = _questationIndex + 1;
+    });
+
+    if (_questationIndex < _questations.length) {
+      print("We have more questation $_totalScore");
     } else {
-      aBool = false;
+      print("No more questation");
     }
   }
 
@@ -66,34 +102,14 @@ class _State extends State<QuizAppPage> {
       appBar: AppBar(
         title: Text("Quiz App"),
       ),
-      body: Container(
-        width: double.infinity,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Questation(questations[_questationIndex]['questationText']),
-            ...(questations[_questationIndex]['answer'] as List<String>)
-                .map((answer) {
-              return Answer(_andwerQuestation, _onLognPress, answer);
-            }).toList(),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class PrimaryButton extends StatelessWidget {
-  const PrimaryButton({
-    Key key,
-  }) : super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    return RaisedButton(
-      color: Colors.blue,
-      child: Text("Ans 1"),
-      textColor: Colors.white,
-      onPressed: () {},
+      body: _questationIndex < _questations.length
+          ? Quiz(
+              andwerQuestation: _andwerQuestation,
+              questationIndex: _questationIndex,
+              onLognPress: _onLognPress,
+              questation: _questations,
+            )
+          : Result(_totalScore,_resetQuiz),
     );
   }
 }

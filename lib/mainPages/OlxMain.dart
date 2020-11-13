@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:learn_flutter/screen/PhoneVerificationPage.dart';
 
-import '../FacebookLogin.dart';
+import '../screen/FacebookLogin.dart';
 import '../screen/GoogleLogin.dart';
 import '../screen/MobielOtp.dart';
 
